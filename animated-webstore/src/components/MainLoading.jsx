@@ -10,7 +10,7 @@ function MainLoading({ onFinish }) {
 
   useGSAP(() => {
     // set initial state
-    gsap.set(containerRef.current, { backgroundColor: "#000", opacity: 1 });
+    gsap.set(containerRef.current, { backgroundColor: "#fff", opacity: 1 });
   }, []);
 
   useEffect(() => {
@@ -21,22 +21,49 @@ function MainLoading({ onFinish }) {
       if (!hasLoopedOnce) {
         setHasLoopedOnce(true);
 
-        // Step 1 → background color transition to purple
+        // Step 1 → gradient background transition bottom to top
+        gsap.set(containerRef.current, {
+          // backgroundImage: "linear-gradient(to top, #8000ff 0%, #6000ff 50%, #fff 100%)",
+          backgroundImage: "linear-gradient(to top, #8000ff 50%, #ffffff 50%)",
+          backgroundSize: "100% 200%",
+          backgroundPosition: "0% 0%",
+          backgroundRepeat: "no-repeat",
+        });
+
         gsap.to(containerRef.current, {
-          backgroundColor: "#8000ff",
-          duration: 1,
+          backgroundPosition: "0% 100%",
+          duration: 1.4,
           ease: "power2.inOut",
           onComplete: () => {
-            // Step 2 → fade out the loader
+            // Step 2 → fade out after gradient completes
+            // gsap.to(containerRef.current, {
+            //   opacity: 0,
+            //   duration: 0.8,
+            //   ease: "power2.inOut",
+            //   onComplete: () => {
+            //     onFinish && onFinish();
+            //   },
+            // });
+            gsap.set(containerRef.current, {
+              backgroundImage: "linear-gradient(to top, #ffffff 50%, #8000ff 50%)",
+              backgroundSize: "100% 200%",
+              backgroundPosition: "0% 0%",
+            });
+
             gsap.to(containerRef.current, {
-              opacity: 0,
-              duration: 0.8,
+              backgroundPosition: "0% 100%",
+              duration: 1.4,
               ease: "power2.inOut",
               onComplete: () => {
-                // Step 3 → trigger Hero
-                onFinish && onFinish();
+                // Step 3 → now hide the loader instantly after second gradient
+                gsap.to(containerRef.current, {
+                  opacity: 0,
+                  duration: 0.2,
+                  ease: "power2.out",
+                  onComplete: () => onFinish && onFinish(),
+                });
               },
-            });
+            });            
           },
         });
       }

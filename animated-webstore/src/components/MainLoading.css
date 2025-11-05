@@ -17,4 +17,5 @@
   width: 200px; /* adjust size as needed */
   height: auto;
   object-fit: contain;
+  border-radius: 10px;
 }
