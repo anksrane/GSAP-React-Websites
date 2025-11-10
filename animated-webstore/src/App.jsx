@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MainLoading from "./components/MainLoading"; 
 import Hero from "./components/Hero";
 import InteractiveSection from "./components/InteractiveSection";
+import WordsFlow from "./components/WordsFlow/WordsFlow";
 import "./App.css";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       {!loadingComplete && (
         <MainLoading onFinish={() => setLoadingComplete(true)} />
       )}
-      {loadingComplete && (<><Hero /><InteractiveSection /></>)}
+      {loadingComplete && (<><Hero /><InteractiveSection /><WordsFlow /></>)}
     </>
   );
 }
