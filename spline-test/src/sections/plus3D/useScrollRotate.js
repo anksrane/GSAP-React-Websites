@@ -27,11 +27,15 @@ export const useScrollRotate = (groupRef) => {
       start: "top top",
       end: "bottom bottom",
       scrub: true,
+      markers: true,
       onUpdate: (self) => {
-        const dir = self.direction === 1 ? 1 : -1; // 1: down, -1: up
+        const velocity = Math.abs(self.getVelocity()) / 2000; // normalize speed
+        const dir = self.direction === 1 ? 1 : -1;
+        const spin = Math.min(velocity, 4) * dir * 0.4; // cap spin speed
         gsap.to(group.rotation, {
-          y: `+=${dir * 0.2}`, // scroll sensitivity
-          duration: 0.3,
+          y: `+=${spin}`,
+          duration: 0.2,
+          ease: "power2.out",
           overwrite: true,
         });
       },

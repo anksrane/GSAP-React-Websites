@@ -7,9 +7,9 @@ import "./Plus3D.css";
 const PlusScene = () => {
   return (
     <div className="plus3d-wrapper">
-      <Canvas camera={{ position: [0, 0, 4] }}>
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 5, 5]} intensity={1.2} />
+      <Canvas camera={{ position: [4, 0, 4] }}>
+        <ambientLight intensity={1} />
+        <directionalLight position={[5, 5, 5]} intensity={1.5} />
         <Suspense fallback={null}>
           <PlusMesh />
         </Suspense>

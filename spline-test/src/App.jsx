@@ -1,11 +1,16 @@
-import PlusScene from './sections/plus3D/PlusScene';
+import Test from './sections/Test';
+import PlusBackgroundSection from './sections/PlusBackgroundSection/PlusBackgroundSection';
 import './App.css';
 
 function App() {
 
   return (
     <>
-      <PlusScene />
+      <Test />
+      <div className="outerconatiner">
+        <PlusBackgroundSection />
+      </div>
+      <Test />
     </>
   )
 }

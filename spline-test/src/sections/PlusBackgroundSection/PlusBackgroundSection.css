@@ -1,0 +1,119 @@
+/* src/sections/PlusBackgroundSection/PlusBackgroundSection.css */
+.outerconatiner{
+    position: relative;
+}
+.plus-bg-section {
+  position: relative;
+  min-height: 300vh; /* make the page long enough to scroll; adjust later */
+  background: transparent;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fixed centered plus (background) */
+/* .plus-fixed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;         
+  height: 100vh;
+  z-index: 0;          
+  pointer-events: none; 
+} */
+
+.plus-fixed {
+  position: sticky;          /* ✅ keeps it fixed only while inside the section */
+  top: 50%;                  /* stay vertically centered */
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;              /* same viewport height while section scrolls */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Make the canvas fill the .plus-fixed container */
+.plus-fixed > div, /* react-three-fiber renders a wrapper div */
+.plus-fixed canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Images scrolling overlay */
+.images-scroll {
+  position: relative;
+  z-index: 1; 
+  width: 100%;
+  padding: 0 4vw; 
+    top: 0%;
+  /* margin-top: -80vh; */
+  box-sizing: border-box;
+   flex: 1 0 auto;
+  /* padding-bottom: 50vh; */
+}
+
+/* grid: left column, center spacer, right column */
+.images-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(360px, 46vw) 1fr;
+  gap: 2rem 0; /* vertical gap 2rem; center column is the spacer so horizontal gap 0 */
+  align-items: start;
+}
+
+/* Each image item will be placed either in left (col 1) or right (col 3) cell.
+   We render items sequentially and use CSS grid-auto-flow: row so every image gets its own row.
+*/
+.image-item {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Force left items into column 1 and right items into column 3 */
+.image-item.left {
+  grid-column: 1 / 2;
+  justify-self: start;
+}
+
+.image-item.right {
+  grid-column: 3 / 4;
+  justify-self: end;
+}
+
+/* Image styling */
+.image-item img {
+  display: block;
+  width: clamp(160px, 40vw, 420px); /* responsive image width */
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transform: translateZ(0); /* GPU hint */
+}
+
+/* Mobile: stack images full width and hide center spacer */
+@media (max-width: 768px) {
+  .plus-fixed {
+    width: 70vw;
+    height: 48vh;
+  }
+
+  .images-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .image-item.left,
+  .image-item.right {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  .image-item img {
+    width: 92vw;
+  }
+}
