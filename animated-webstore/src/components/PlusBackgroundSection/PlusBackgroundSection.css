@@ -62,6 +62,8 @@
 .image-item {
   width: 100%;
   margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Force left items into column 1 and right items into column 3 */
@@ -78,7 +80,7 @@
 /* Image styling */
 .image-item img {
   display: block;
-  width: clamp(160px, 40vw, 420px); /* responsive image width */
+  /* width: clamp(160px, 40vw, 420px);  */
   height: auto;
   object-fit: cover;
   border-radius: 8px;

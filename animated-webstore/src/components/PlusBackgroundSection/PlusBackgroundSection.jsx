@@ -19,48 +19,90 @@ const PlusBackgroundSection = () => {
   useGSAP(() => {  
 
     const ctx = gsap.context(() => {
-      const imagesLeft = gsap.utils.toArray(".image-item.left img");
-      const imagesRight = gsap.utils.toArray(".image-item.right img");
+      const imagesLeft = gsap.utils.toArray(".image-item.left");
+      const imagesRight = gsap.utils.toArray(".image-item.right");
 
       imagesLeft.forEach((img) => {
-        gsap.fromTo(
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: img,
+            start: "top 90%",
+            end: "top 0%",
+            scrub: true,
+          },
+        });
+
+        tl.fromTo(
           img,
-          { xPercent: 50, opacity: 0, scale: 1.2 },
-          {
-            opacity: 1,
-            xPercent: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: "circ.inOut",
-            scrollTrigger: {
-              trigger: img,
-              start: "top 80%",
-              end: "bottom 60%",
-              scrub: true,
-            },
-          }
+          { xPercent: 50, opacity: 0, scale: 0.8 },
+          { xPercent: 0, opacity: 1, scale: 1, ease: "power2.out", duration: 0.5 }
+        ).to(
+          img,
+          { xPercent: 30, opacity: 0.5, ease: "power2.inOut", duration: 0.5, scale:0.8 },
+          ">"
         );
       });
 
       imagesRight.forEach((img) => {
-        gsap.fromTo(
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: img,
+            start: "top 90%",
+            end: "top 0%",
+            scrub: true,
+          },
+        });
+
+        tl.fromTo(
           img,
-          { xPercent: -50, opacity: 0, scale: 1.2 },
-          {
-            opacity: 1,
-            xPercent: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: "circ.inOut",
-            scrollTrigger: {
-              trigger: img,
-              start: "top 80%",
-              end: "bottom 60%",
-              scrub: true,
-            },
-          }
+          { xPercent: -50, opacity: 0, scale: 0.8 },
+          { xPercent: 0, opacity: 1, scale: 1, ease: "power2.out", duration: 0.5 }
+        ).to(
+          img,
+          { xPercent: -30, opacity: 0.5, ease: "power2.inOut", duration: 0.5, scale:0.8 },
+          ">"
         );
-      });
+      });      
+
+      // imagesLeft.forEach((img) => {
+      //   gsap.fromTo(
+      //     img,
+      //     { xPercent: 50, opacity: 0, scale: 1.2 },
+      //     {
+      //       opacity: 1,
+      //       xPercent: -30,
+      //       scale: 1,
+      //       duration: 1.2,
+      //       ease: "circ.inOut",
+      //       scrollTrigger: {
+      //         trigger: img,
+      //         start: "top 80%",
+      //         end: "bottom 60%",
+      //         scrub: true,
+      //       },
+      //     }
+      //   );
+      // });
+
+      // imagesRight.forEach((img) => {
+      //   gsap.fromTo(
+      //     img,
+      //     { xPercent: -50, opacity: 0, scale: 1.2 },
+      //     {
+      //       opacity: 1,
+      //       xPercent: 30,
+      //       scale: 1,
+      //       duration: 1.2,
+      //       ease: "circ.inOut",
+      //       scrollTrigger: {
+      //         trigger: img,
+      //         start: "top 80%",
+      //         end: "bottom 60%",
+      //         scrub: true,
+      //       },
+      //     }
+      //   );
+      // });
 
       // ✅ Wait until all images inside the container are fully loaded
       const imagesEl = containerRef.current?.querySelectorAll("img");
