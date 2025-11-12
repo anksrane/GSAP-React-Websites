@@ -6,6 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PlusScene from "../plus3D/PlusScene";
 import "./PlusBackgroundSection.css";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const images = Array.from({ length: 30 }).map((_, i) => ({
   id: i,
   src: `https://placehold.co/300x400?text=${i + 1}`,
@@ -14,10 +16,9 @@ const images = Array.from({ length: 30 }).map((_, i) => ({
 const PlusBackgroundSection = () => {
   const containerRef = useRef(null);
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  useGSAP(() => {  
 
-    requestAnimationFrame(() => {
+    const ctx = gsap.context(() => {
       const imagesLeft = gsap.utils.toArray(".image-item.left img");
       const imagesRight = gsap.utils.toArray(".image-item.right img");
 
@@ -61,9 +62,27 @@ const PlusBackgroundSection = () => {
         );
       });
 
-      ScrollTrigger.refresh(); 
-      console.log(ScrollTrigger.getAll());
-    });
+      // ✅ Wait until all images inside the container are fully loaded
+      const imagesEl = containerRef.current?.querySelectorAll("img");
+      let loaded = 0;
+
+      imagesEl?.forEach((img) => {
+        if (img.complete) {
+          loaded++;
+        } else {
+          img.addEventListener("load", () => {
+            loaded++;
+            if (loaded === imagesEl.length) {
+              console.log("✅ All images loaded — refreshing ScrollTrigger");
+              ScrollTrigger.refresh();
+            }
+          });
+        }
+      });        
+
+      setTimeout(() => ScrollTrigger.refresh(), 300);
+    },containerRef);
+    return () => ctx.revert();
   }, {scope: containerRef});
 
   return (
