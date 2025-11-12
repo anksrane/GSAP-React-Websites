@@ -1,6 +1,7 @@
 /* src/sections/PlusBackgroundSection/PlusBackgroundSection.css */
 .outerconatiner{
     position: relative;
+    background-color: black;
 }
 .plus-bg-section {
   position: relative;
@@ -9,6 +10,7 @@
   overflow: visible;
   display: flex;
   flex-direction: column;
+  
 }
 
 /* Fixed centered plus (background) */
@@ -25,8 +27,8 @@
 
 .plus-fixed {
   position: sticky;          /* ✅ keeps it fixed only while inside the section */
-  top: 50%;                  /* stay vertically centered */
-  transform: translateY(-50%);
+  top: 0%;                  /* stay vertically centered */
+  /* transform: translateY(-50%); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,6 +36,7 @@
   height: 100vh;              /* same viewport height while section scrolls */
   z-index: 0;
   pointer-events: none;
+  padding-top: 30px;
 }
 
 /* Make the canvas fill the .plus-fixed container */

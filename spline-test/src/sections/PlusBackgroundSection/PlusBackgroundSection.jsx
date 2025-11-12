@@ -26,7 +26,7 @@ const PlusBackgroundSection = () => {
         xPercent: 0,
         duration: 1.2,
         stagger: 0.15,
-        ease: "circ.inOut",
+        // ease: "circ.inOut",
         scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
@@ -44,7 +44,7 @@ const PlusBackgroundSection = () => {
         xPercent: 0,
         duration: 1.2,
         stagger: 0.15,
-        ease: "circ.inOut",         
+        // ease: "circ.inOut",         
         scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",

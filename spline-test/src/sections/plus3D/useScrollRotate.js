@@ -27,7 +27,7 @@ export const useScrollRotate = (groupRef) => {
       start: "top top",
       end: "bottom bottom",
       scrub: true,
-      markers: true,
+      // markers: false,
       onUpdate: (self) => {
         const velocity = Math.abs(self.getVelocity()) / 2000; // normalize speed
         const dir = self.direction === 1 ? 1 : -1;

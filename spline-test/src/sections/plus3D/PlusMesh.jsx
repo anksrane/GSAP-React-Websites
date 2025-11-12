@@ -38,14 +38,14 @@ const PlusMesh = () => {
       <group>
         {/* Vertical bar */}
         <mesh>
-          <boxGeometry args={[0.2, 2.2, 0.2]} />
-          <meshStandardMaterial color={plus1Color} metalness={0.5} roughness={0.2} />
+          <boxGeometry args={[0.2, 3.0, 0.2]} />
+          <meshStandardMaterial color={plus1Color} metalness={0.3} roughness={0.2} />
         </mesh>
 
         {/* Horizontal bar */}
         <mesh>
-          <boxGeometry args={[2.2, 0.2, 0.2]} />
-          <meshStandardMaterial color={plus1Color} metalness={0.5} roughness={0.2} />
+          <boxGeometry args={[3.0, 0.2, 0.2]} />
+          <meshStandardMaterial color={plus1Color} metalness={0.3} roughness={0.2} />
         </mesh>
       </group>
 
@@ -53,14 +53,14 @@ const PlusMesh = () => {
       <group rotation={[0, Math.PI / 2, 0]}>
         {/* Vertical bar */}
         <mesh>
-          <boxGeometry args={[0.2, 2.2, 0.2]} />
-          <meshStandardMaterial color={plus2Color} metalness={0.5} roughness={0.2} />
+          <boxGeometry args={[0.2, 3.0, 0.2]} />
+          <meshStandardMaterial color={plus2Color} metalness={0.3} roughness={0.2} />
         </mesh>
 
         {/* Horizontal bar */}
         <mesh>
-          <boxGeometry args={[2.2, 0.2, 0.2]} />
-          <meshStandardMaterial color={plus2Color} metalness={0.5} roughness={0.2} />
+          <boxGeometry args={[3.0, 0.2, 0.2]} />
+          <meshStandardMaterial color={plus2Color} metalness={0.3} roughness={0.2} />
         </mesh>
       </group>
     </group>
@@ -68,33 +68,3 @@ const PlusMesh = () => {
 };
 
 export default PlusMesh;
-
-// import React, { useRef } from "react";
-// import { useFrame } from "@react-three/fiber";
-
-// const PlusMesh = () => {
-//   const group = useRef();
-
-//   // Continuous slow rotation (idle)
-//   useFrame((state, delta) => {
-//     group.current.rotation.y += delta * 0.2; // adjust idle speed
-//   });
-
-//   return (
-//     <group ref={group}>
-//       {/* Vertical bar */}
-//       <mesh position={[0, 0, 0]}>
-//         <boxGeometry args={[0.2, 1.2, 0.2]} />
-//         <meshStandardMaterial color="#00aaff" />
-//       </mesh>
-
-//       {/* Horizontal bar */}
-//       <mesh position={[0, 0, 0]}>
-//         <boxGeometry args={[1.2, 0.2, 0.2]} />
-//         <meshStandardMaterial color="#00aaff" />
-//       </mesh>
-//     </group>
-//   );
-// };
-
-// export default PlusMesh;
